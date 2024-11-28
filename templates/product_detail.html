@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  <!-- Якщо є стиль CSS -->
+</head>
+<body>
+
+    <h1>Product Detail</h1>
+
+    <!-- Виводимо інформацію про продукт -->
+    <div class="product-detail">
+        <h2>{{ product.title }}</h2> <!-- Назва продукту -->
+        <p><strong>Price:</strong> ${{ product.price }}</p> <!-- Ціна -->
+        <p><strong>Description:</strong> {{ product.description }}</p> <!-- Опис -->
+        <p><strong>Stock:</strong> {{ product.stock }} units</p> <!-- Кількість на складі -->
+        <p><strong>Price per 1kg:</strong> ${{ product.price_1kg }}</p> <!-- Ціна за 1 кг -->
+
+        <!-- Категорія продукту -->
+        {% if product.category %}
+            <p><strong>Category:</strong> {{ product.category.name }}</p>
+        {% else %}
+            <p><strong>Category:</strong> Not assigned</p>
+        {% endif %}
+
+        <!-- Можна додати зображення продукту -->
+        {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.title }}" class="product-image">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+    </div>
+
+    <a href="{% url 'index' %}">Back to Products</a> <!-- Посилання на головну сторінку продуктів -->
+
+</body>
+</html>

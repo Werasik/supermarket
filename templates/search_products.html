@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Products</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">  
+</head>
+<body>
+
+    <h1>Search Products</h1>
+
+  
+    <form method="get" action="{% url 'search_products' %}">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search for a product..." />
+        <button type="submit">Search</button>
+    </form>
+
+    {% if products %}
+        <h2>Search Results for: "{{ query }}"</h2>
+        <div class="product-list">
+            {% for product in products %}
+                <div class="product">
+                    <h3><a href="{% url 'product_detail' product.id %}">{{ product.title }}</a></h3> <!-- Назва продукту -->
+                    <p><strong>Price:</strong> ${{ product.price }}</p> <!-- Ціна -->
+                    <p><strong>Description:</strong> {{ product.description|truncatewords:20 }}</p> <!-- Короткий опис -->
+                    <p><strong>Stock:</strong> {{ product.stock }} units</p> <!-- Кількість на складі -->
+
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.title }}" class="product-image">
+                    {% else %}
+                        <p>No image available</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No products found for "{{ query }}".</p> <!-- Якщо нічого не знайдено -->
+    {% endif %}
+
+    <a href="{% url 'index' %}">Back to Products</a> <!-- Посилання на головну сторінку продуктів -->
+
+</body>
+</html>
