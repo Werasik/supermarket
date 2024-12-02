@@ -43,21 +43,51 @@
             background-color: #0056b3;
             border-color: #0056b3;
         }
+        .header {
+            background-color: #fff;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .btn-cart {
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+            color: #fff;
+        }
+        .btn-cart:hover {
+            background-color: #388E3C;
+            border-color: #388E3C;
+        }
     </style>
 </head>
 <body>
+    <!-- Шапка сайту -->
+    <div class="header">
+        <h1>Food Shop</h1>
+        <!-- Кнопка для переходу до кошика -->
+        <a href="{% url 'cart_detail' %}" class="btn btn-cart">Перейти до кошика</a>
+    </div>
+
+    <!-- Головний контент -->
     <div class="container">
         <h1 class="text-center mb-4">Our Products</h1>
         <div class="row">
             {% for product in products %}
                 <div class="col-md-4">
                     <div class="card product-card">
-                        <img src="{{ product.image.url|default:'/images/default.jpg' }}" alt="{{ product.title }}">
+                        <img src="{% if product.image %}{{ product.image.url }}{% else %}/media/images/default.jpg{% endif %}" 
+                             alt="Product image" class="card-img-top">
                         <div class="card-body">
                             <h5 class="product-title">{{ product.title }}</h5>
                             <p class="product-price">{{ product.price }} ₴</p>
                             <p class="product-description">{{ product.description }}</p>
-                            <a href="{% url 'product_detail' id=product.id %}" class="btn btn-primary">Details</a>
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Details</a>
                         </div>
                     </div>
                 </div>
