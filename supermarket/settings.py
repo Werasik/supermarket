@@ -1,17 +1,14 @@
 from pathlib import Path
 import os
-
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 SECRET_KEY = 'django-insecure-(oyvqmt4l!o@lwo=%opnk7ca-)fhyr+@00v%_!knze-vvim-ja'
-
 DEBUG = True
-
 ALLOWED_HOSTS = []
-
 INSTALLED_APPS = [
     'Products',
-    'cart',  
+    'cart',
+    'orders',
+    'users',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -31,7 +28,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'supermarket.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -49,7 +45,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'supermarket.wsgi.application'
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -73,18 +68,11 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
-
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-
-# Налаштування для медіа
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

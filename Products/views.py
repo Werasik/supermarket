@@ -4,12 +4,12 @@ from .models import Product
 # Check all the products
 def check_all_products(request):
     products = Product.objects.all()
-    return render(request, 'index.html', {'products': products})  # Змінено шлях до шаблону
+    return render(request, 'index.html', {'products': products}) 
 
 # Check details of product
 def product_detail(request, id):
     product = get_object_or_404(Product, pk=id)
-    return render(request, 'product_detail.html', {'product': product})  # Змінено шлях до шаблону
+    return render(request, 'product_detail.html', {'product': product})  
 
 # Searching products by name
 def search_by_name(request):
