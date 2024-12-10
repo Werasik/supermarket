@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        p {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 16px;
+            color: #666;
+        }
+        .btn-pay {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            text-align: center;
+            background-color: #0070ba;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-pay:hover {
+            background-color: #005ea8;
+        }
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Checkout</h1>
+        <p>You're about to complete your purchase. Click the button below to proceed to payment.</p>
+        <form method="POST" action="{% url 'process_payment' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn-pay">Pay Now</button>
+        </form>
+    </div>
+    <footer>
+        <p>Secure Payment Powered by PayPal</p>
+    </footer>
+</body>
+</html>

@@ -9,6 +9,8 @@ INSTALLED_APPS = [
     'cart',
     'orders',
     'users',
+    'payments',
+    'shopping',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -67,6 +69,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
@@ -76,3 +79,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Paypal
+PAYPAL_CLIENT_ID = "Ваш PayPal Client ID"
+PAYPAL_CLIENT_SECRET = "Ваш PayPal Client Secret"
+PAYPAL_MODE = "sandbox"  
