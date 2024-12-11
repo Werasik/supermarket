@@ -1,0 +1,47 @@
+<!-- shipping.html -->
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вибір адреси та способу доставки</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Посилання на ваші стилі CSS -->
+</head>
+<body>
+    <div class="container">
+        <h1>Вибір адреси та способу доставки</h1>
+        
+        <!-- Адреса доставки -->
+        <div class="address-section">
+            <h2>Адреса доставки</h2>
+            <form action="/shipping/address/" method="POST">
+                <label for="address-line1">Вулиця, номер будинку:</label>
+                <input type="text" id="address-line1" name="address-line1" required>
+                
+                <label for="city">Місто:</label>
+                <input type="text" id="city" name="city" required>
+                
+                <label for="postal-code">Поштовий індекс:</label>
+                <input type="text" id="postal-code" name="postal-code" required>
+                
+                <button type="submit">Зберегти адресу</button>
+            </form>
+        </div>
+        
+        <!-- Метод доставки -->
+        <div class="shipping-method-section">
+            <h2>Метод доставки</h2>
+            <form action="/shipping/method/" method="POST">
+                <label for="shipping-method">Виберіть метод доставки:</label>
+                <select id="shipping-method" name="shipping-method">
+                    <option value="standard">Стандартна доставка</option>
+                    <option value="express">Експрес-доставка</option>
+                </select>
+                
+                <button type="submit">Обрати метод</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

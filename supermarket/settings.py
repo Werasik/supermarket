@@ -10,7 +10,7 @@ INSTALLED_APPS = [
     'orders',
     'users',
     'payments',
-    'shopping',
+    'shipping',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

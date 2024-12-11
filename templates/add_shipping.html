@@ -1,0 +1,28 @@
+<!-- add_shipping.html -->
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Додавання адреси доставки</title>
+</head>
+<body>
+    <h2>Додавання нової адреси доставки</h2>
+    <form method="POST" action="{% url 'add_shipping' %}">
+        {% csrf_token %}
+        <label for="city">Місто:</label>
+        <input type="text" id="city" name="city" required>
+        <br>
+        <label for="zip_code">Поштовий індекс:</label>
+        <input type="text" id="zip_code" name="zip_code" required>
+        <br>
+        <label for="street">Вулиця:</label>
+        <input type="text" id="street" name="street" required>
+        <br>
+        <label for="house_number">Номер будинку:</label>
+        <input type="text" id="house_number" name="house_number" required>
+        <br>
+        <button type="submit">Додати адресу</button>
+    </form>
+</body>
+</html>

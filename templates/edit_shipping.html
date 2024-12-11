@@ -1,0 +1,28 @@
+<!-- edit_shipping.html -->
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Редагування адреси доставки</title>
+</head>
+<body>
+    <h2>Редагування адреси доставки</h2>
+    <form method="POST" action="{% url 'edit_shipping' %}">
+        {% csrf_token %}
+        <label for="city">Місто:</label>
+        <input type="text" id="city" name="city" value="{{ address.city }}" required>
+        <br>
+        <label for="zip_code">Поштовий індекс:</label>
+        <input type="text" id="zip_code" name="zip_code" value="{{ address.zip_code }}" required>
+        <br>
+        <label for="street">Вулиця:</label>
+        <input type="text" id="street" name="street" value="{{ address.street }}" required>
+        <br>
+        <label for="house_number">Номер будинку:</label>
+        <input type="text" id="house_number" name="house_number" value="{{ address.house_number }}" required>
+        <br>
+        <button type="submit">Зберегти зміни</button>
+    </form>
+</body>
+</html>
