@@ -1,9 +1,19 @@
 from pathlib import Path
 import os
+
+# Базовий каталог проекту
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Секретний ключ для Django
 SECRET_KEY = 'django-insecure-(oyvqmt4l!o@lwo=%opnk7ca-)fhyr+@00v%_!knze-vvim-ja'
+
+# Режим відладки
 DEBUG = True
+
+# Дозволені хости
 ALLOWED_HOSTS = []
+
+# Додатки
 INSTALLED_APPS = [
     'Products',
     'cart',
@@ -19,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+# Middleware
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -29,12 +40,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Головний конфігураційний файл URL
 ROOT_URLCONF = 'supermarket.urls'
+
+# Налаштування шаблонів
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,  
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -46,7 +60,10 @@ TEMPLATES = [
     },
 ]
 
+# WSGI
 WSGI_APPLICATION = 'supermarket.wsgi.application'
+
+# База даних
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -54,6 +71,7 @@ DATABASES = {
     }
 }
 
+# Валідатори паролів
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -69,17 +87,35 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+# Налаштування мови та часової зони
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
+
+# Статичні файли
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+
+# Медіа-файли
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Поле для автоматичного первинного ключа
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# Paypal
+
+# Налаштування PayPal
 PAYPAL_CLIENT_ID = "Ваш PayPal Client ID"
 PAYPAL_CLIENT_SECRET = "Ваш PayPal Client Secret"
-PAYPAL_MODE = "sandbox"  
+PAYPAL_MODE = "sandbox"
+
+# Налаштування Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Використання SMTP
+EMAIL_HOST = 'smtp.gmail.com'  # Наприклад, для Gmail
+EMAIL_PORT = 587  # Порт для TLS
+EMAIL_USE_TLS = True  # Увімкнення TLS
+EMAIL_HOST_USER = 'tukefbergg@gmail.com'  # Ваша електронна пошта
+EMAIL_HOST_PASSWORD = 'Adam i love you it was a joke'  # Пароль від пошти
+
+# Додаткові налаштування
+# Вимкніть "console.EmailBackend" для використання реальної відправки листів.

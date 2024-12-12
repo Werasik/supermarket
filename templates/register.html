@@ -13,10 +13,34 @@
         <h1>Register</h1>
         <form method="post">
             {% csrf_token %}
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password1" placeholder="Password" required>
-            <input type="password" name="password2" placeholder="Confirm Password" required>
+            <div>
+                <label for="username">Username</label>
+                <input type="text" name="username" required>
+                {% if form.username.errors %}
+                    <div class="error">{{ form.username.errors|join:", " }}</div>
+                {% endif %}
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" required>
+                {% if form.email.errors %}
+                    <div class="error">{{ form.email.errors|join:", " }}</div>
+                {% endif %}
+            </div>
+            <div>
+                <label for="password1">Password</label>
+                <input type="password" name="password1" required>
+                {% if form.password1.errors %}
+                    <div class="error">{{ form.password1.errors|join:", " }}</div>
+                {% endif %}
+            </div>
+            <div>
+                <label for="password2">Confirm Password</label>
+                <input type="password" name="password2" required>
+                {% if form.password2.errors %}
+                    <div class="error">{{ form.password2.errors|join:", " }}</div>
+                {% endif %}
+            </div>
             <button type="submit">Register</button>
         </form>
         <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
