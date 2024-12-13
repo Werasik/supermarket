@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Default Address</title>
+</head>
+<body>
+    <h1>Select Default Address</h1>
+    <form method="POST" action="{% url 'shipping:set_default_address' %}">
+        {% csrf_token %}
+        {% for address in addresses %}
+            <div>
+                <input type="radio" name="address_id" value="{{ address.id }}" {% if address.is_default %}checked{% endif %}>
+                <label>{{ address }}</label>
+            </div>
+        {% endfor %}
+        <button type="submit">Set as Default</button>
+    </form>
+    <a href="{% url 'index' %}">Back to Home</a>
+</body>
+</html>

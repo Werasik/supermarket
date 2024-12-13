@@ -10,6 +10,7 @@ urlpatterns = [
     path('users/', include('users.urls')),
     path('orders/', include('orders.urls')),
     path('payments/', include('payments.urls')),
+    path('shipping/', include('shipping.urls')),
 ]
 
 if settings.DEBUG:

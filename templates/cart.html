@@ -1,34 +1,52 @@
-{% block content %}
-<h1>Your Cart</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+</head>
+<body>
+    <h1>Your Cart</h1>
 
-{% if cart_items %}
-  <ul>
-    {% for item in cart_items %}
-      <li>
-        <h3>{{ item.product.title }}</h3>
-        <p>Quantity: {{ item.quantity }}</p>
-        <p>Price per unit: {{ item.product.price }} ₴</p>
-        <p>Total price: {{ item.total_price }} ₴</p>
-        <form action="{% url 'remove_from_cart' item.product.id %}" method="POST" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Remove One</button>
-        </form>
-      </li>
-    {% endfor %}
-  </ul>
+    {% if cart_items %}
+        <ul>
+            {% for item in cart_items %}
+                <li>
+                    <h3>{{ item.product.title }}</h3>
+                    <p>Quantity: {{ item.quantity }}</p>
+                    <p>Price per unit: {{ item.product.price }} ₴</p>
+                    <p>Total price: {{ item.total_price }} ₴</p>
+                    <form action="{% url 'remove_from_cart' item.product.id %}" method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Remove One</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
 
-  <p><strong>Total items:</strong> {{ cart_items|length }}</p>
-  <p><strong>Total price:</strong> {{ total_price }} ₴</p>
-  
-  <!-- Кнопка оплати -->
-  <div class="mt-4">
-    <a href="{% url 'create_payment' %}" class="btn btn-success">Pay Now</a>
-  </div>
-{% else %}
-  <p>No items in your cart.</p>
-{% endif %}
+        <p><strong>Total items:</strong> {{ cart_items|length }}</p>
+        <p><strong>Total price:</strong> {{ total_price }} ₴</p>
+        
+        <!-- Кнопка оплати -->
+        <div class="mt-4">
+            <a href="{% url 'create_payment' %}" class="btn btn-success">Pay Now</a>
+        </div>
+    {% else %}
+        <p>No items in your cart.</p>
+    {% endif %}
 
-<div class="mt-4">
-    <a href="/" class="btn btn-primary">Back to Products</a>
-</div>
-{% endblock %}
+    <hr>
+    <!-- Відображення адреси за замовчуванням -->
+    {% if default_address %}
+        <p><strong>Default Shipping Address:</strong> {{ default_address.street }}</p>
+        <a href="{% url 'shipping:set_default_address' %}" class="btn btn-warning">Change Default Address</a>
+    {% else %}
+        <p><strong>No default shipping address selected.</strong></p>
+        <a href="{% url 'shipping:set_default_address' %}" class="btn btn-primary">Select Default Address</a>
+    {% endif %}
+
+    <div class="mt-4">
+        <a href="{% url 'index' %}" class="btn btn-primary">Back to Products</a>
+    </div>
+</body>
+</html>

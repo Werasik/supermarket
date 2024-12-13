@@ -19,12 +19,13 @@ class ShippingMethod(models.Model):
     def __str__(self):
         return dict(self.SHIPPING_CHOICES).get(self.name)
 
-
 class Address(models.Model):
     city = models.CharField(max_length=100, verbose_name="City")
     zip_code = models.CharField(max_length=10, verbose_name="Zip Code")
     street = models.CharField(max_length=255, verbose_name="Street")
     house_number = models.CharField(max_length=10, verbose_name="House number")
+    country = models.CharField(max_length=100, verbose_name="Country", default="Ukraine")
+    is_default = models.BooleanField(default=False, verbose_name="Is Default")
 
     def __str__(self):
-        return f"{self.street} {self.house_number}, {self.city} {self.zip_code}"
+        return f"{self.street}, {self.city}, {self.zip_code}, {self.country}"

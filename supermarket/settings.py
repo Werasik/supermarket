@@ -110,9 +110,9 @@ PAYPAL_CLIENT_SECRET = "ELSveWgcGFt7yKKTKWcIoqkzZXDfssKjwVlq3RKGkg8RtejVf2tuqzHJ
 PAYPAL_MODE = "sandbox"
 
 # Налаштування Email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # Використання SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # Наприклад, для Gmail
-EMAIL_PORT = 465  # Порт для TLS
+EMAIL_PORT = 587  # Порт для TLS
 EMAIL_USE_TLS = True  # Увімкнення TLS
-EMAIL_HOST_USER = 'tukefbergg@gmail.com'  # Ваша електронна пошта
-EMAIL_HOST_PASSWORD = 'Adam i love you it was a joke'  # Пароль від пошти
+EMAIL_HOST_USER = 'klumenko2007maks@gmail.com'  # Ваша електронна пошта
+EMAIL_HOST_PASSWORD = '137955137955max'

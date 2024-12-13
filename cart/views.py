@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from Products.models import Product
 from .models import Cart, CartItem
+from shipping.models import Address
 
 
 @login_required
@@ -9,14 +10,11 @@ def cart_view(request):
     cart, _ = Cart.objects.get_or_create(user=request.user)
     cart_items = cart.items.all()
     total_price = sum(item.total_price for item in cart_items)
-
-    # Логування для діагностики
-    print("Cart Items:", cart_items)
-    print("Total Price:", total_price)
-
+    default_address = Address.objects.filter(is_default=True).first()
     return render(request, 'cart.html', {
         'cart_items': cart_items,
         'total_price': total_price,
+        'default_address': default_address,
     })
 @login_required
 def add_to_cart(request, product_id):

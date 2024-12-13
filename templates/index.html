@@ -72,7 +72,7 @@
             color: #333;
         }
     </style>
-    {% load static %} <!-- Loading static tags for the template -->
+    {% load static %}
 </head>
 <body>
     <div class="header">
@@ -82,6 +82,7 @@
                 <span class="welcome">Welcome, {{ user.username }}</span>
                 <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
                 <a href="{% url 'cart_detail' %}" class="btn btn-secondary">Cart</a>
+                <a href="{% url 'shipping:set_default_address' %}" class="btn btn-info">Set Default Address</a> <!-- New Button -->
             {% else %}
                 <a href="{% url 'register' %}" class="btn btn-secondary">Register</a>
                 <a href="{% url 'login' %}" class="btn btn-secondary">Login</a>
@@ -113,6 +114,7 @@
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-success">Add to Cart</button>
                                     </form>
+                                    <a href="{% url 'shipping:add_shipping' %}" class="btn btn-warning mt-2">Choose Shipping Address</a>
                                 {% endif %}
                             </div>
                         </div>
