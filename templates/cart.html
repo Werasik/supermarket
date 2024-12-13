@@ -1,8 +1,6 @@
 {% block content %}
 <h1>Your Cart</h1>
 
-<p>Test: Adding Total Calculation</p>
-
 {% if cart_items %}
   <ul>
     {% for item in cart_items %}
@@ -11,14 +9,26 @@
         <p>Quantity: {{ item.quantity }}</p>
         <p>Price per unit: {{ item.product.price }} ₴</p>
         <p>Total price: {{ item.total_price }} ₴</p>
-        <a href="{% url 'remove_from_cart' item.product.id %}" class="btn btn-danger">Remove</a>
+        <form action="{% url 'remove_from_cart' item.product.id %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Remove One</button>
+        </form>
       </li>
     {% endfor %}
   </ul>
 
   <p><strong>Total items:</strong> {{ cart_items|length }}</p>
   <p><strong>Total price:</strong> {{ total_price }} ₴</p>
+  
+  <!-- Кнопка оплати -->
+  <div class="mt-4">
+    <a href="{% url 'create_payment' %}" class="btn btn-success">Pay Now</a>
+  </div>
 {% else %}
   <p>No items in your cart.</p>
 {% endif %}
+
+<div class="mt-4">
+    <a href="/" class="btn btn-primary">Back to Products</a>
+</div>
 {% endblock %}

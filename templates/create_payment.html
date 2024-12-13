@@ -60,7 +60,7 @@
     <div class="container">
         <h1>Checkout</h1>
         <p>You're about to complete your purchase. Click the button below to proceed to payment.</p>
-        <form method="POST" action="{% url 'process_payment' %}">
+        <form method="POST" action="{% url 'create_payment' %}">
             {% csrf_token %}
             <button type="submit" class="btn-pay">Pay Now</button>
         </form>

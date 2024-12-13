@@ -1,8 +1,19 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .paypal import paypalrestsdk
+import paypalrestsdk
+from django.conf import settings
+
+# Налаштування PayPal SDK
+paypalrestsdk.configure({
+    "mode": settings.PAYPAL_MODE,  # "sandbox" або "live"
+    "client_id": settings.PAYPAL_CLIENT_ID,
+    "client_secret": settings.PAYPAL_CLIENT_SECRET
+})
 
 def create_payment(request):
+    """
+    Створює платіж у PayPal
+    """
     if request.method == "POST":
         payment = paypalrestsdk.Payment({
             "intent": "sale",
@@ -10,8 +21,8 @@ def create_payment(request):
                 "payment_method": "paypal"
             },
             "redirect_urls": {
-                "return_url": "http://127.0.0.1:8000/payment-success/",
-                "cancel_url": "http://127.0.0.1:8000/payment-cancel/"
+                "return_url": request.build_absolute_uri('/payments/payment_success/'),
+                "cancel_url": request.build_absolute_uri('/payments/payment_cancel/')
             },
             "transactions": [{
                 "amount": {
@@ -31,6 +42,9 @@ def create_payment(request):
     return render(request, "create_payment.html")
 
 def payment_success(request):
+    """
+    Обробляє успішну оплату
+    """
     payment_id = request.GET.get("paymentId")
     payer_id = request.GET.get("PayerID")
 
@@ -41,6 +55,16 @@ def payment_success(request):
     else:
         return render(request, "payment_error.html", {"error": payment.error})
 
-
 def payment_cancel(request):
+    """
+    Обробляє скасування платежу
+    """
     return render(request, "payment_cancel.html", {"message": "The payment was canceled."})
+
+def process_payment(request):
+    """
+    Додаткова обробка платежу (якщо потрібно)
+    """
+    if request.method == "POST":
+        return JsonResponse({"message": "Payment processed successfully!"})
+    return JsonResponse({"error": "Invalid request method."})

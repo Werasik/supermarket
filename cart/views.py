@@ -33,8 +33,17 @@ def add_to_cart(request, product_id):
 
 @login_required
 def remove_from_cart(request, product_id):
-    # Видаляємо елемент із кошика
+    # Отримуємо кошик користувача
     cart = Cart.objects.get(user=request.user)
+    # Отримуємо елемент кошика
     cart_item = get_object_or_404(CartItem, cart=cart, product_id=product_id)
-    cart_item.delete()
-    return redirect('cart_detail')
+
+    # Зменшуємо кількість товару
+    if cart_item.quantity > 1:
+        cart_item.quantity -= 1
+        cart_item.save()  # Зберігаємо зміни
+    else:
+        # Якщо кількість дорівнює 1, видаляємо елемент
+        cart_item.delete()
+    
+    return redirect('cart_detail')  # Переходимо назад у кошик

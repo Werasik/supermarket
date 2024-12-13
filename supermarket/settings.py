@@ -105,8 +105,8 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Налаштування PayPal
-PAYPAL_CLIENT_ID = "Ваш PayPal Client ID"
-PAYPAL_CLIENT_SECRET = "Ваш PayPal Client Secret"
+PAYPAL_CLIENT_ID = "ASRtmfnHrQS8Vba4lHWznXxIIE9S3AmC3Y4MyxcdsWjfHNZfrmF11C6TmD6oDfuHoAGBklT3z1ho-XYl"
+PAYPAL_CLIENT_SECRET = "ELSveWgcGFt7yKKTKWcIoqkzZXDfssKjwVlq3RKGkg8RtejVf2tuqzHJGNUEbmBwIzSPZwCGJQzS7PuK"
 PAYPAL_MODE = "sandbox"
 
 # Налаштування Email
