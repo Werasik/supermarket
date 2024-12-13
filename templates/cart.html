@@ -1,29 +1,24 @@
-{% extends 'index.html' %}
-
 {% block content %}
-  <h1>Your Cart</h1>
+<h1>Your Cart</h1>
 
-  {% if cart_items %}
-    <ul>
-      {% for item in cart_items %}
-        <li>
-          <div>
-            <h2>{{ item.product.name }}</h2>
-            <p>Quantity: {{ item.quantity }}</p>
-            <p>Price per unit: ${{ item.product.price }}</p>
-            <p>Total price: ${{ item.total_price }}</p>
-            <a href="{% url 'remove_from_cart' item.product.id %}">Remove</a>
-          </div>
-        </li>
-      {% endfor %}
-    </ul>
+<p>Test: Adding Total Calculation</p>
 
-    <p>Total items: {{ cart_items.count }}</p>
-    <p>Total price: ${{ total_price }}</p>
-  {% else %}
-    <p>Your cart is empty.</p>
-  {% endif %}
+{% if cart_items %}
+  <ul>
+    {% for item in cart_items %}
+      <li>
+        <h3>{{ item.product.title }}</h3>
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Price per unit: {{ item.product.price }} ₴</p>
+        <p>Total price: {{ item.total_price }} ₴</p>
+        <a href="{% url 'remove_from_cart' item.product.id %}" class="btn btn-danger">Remove</a>
+      </li>
+    {% endfor %}
+  </ul>
 
-  <a href="{% url 'home' %}">Back to Home</a>
-  <a href="{% url 'checkout' %}">Proceed to Checkout</a>
+  <p><strong>Total items:</strong> {{ cart_items|length }}</p>
+  <p><strong>Total price:</strong> {{ total_price }} ₴</p>
+{% else %}
+  <p>No items in your cart.</p>
+{% endif %}
 {% endblock %}
