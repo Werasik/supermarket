@@ -27,7 +27,7 @@
         <p><strong>Total items:</strong> {{ cart_items|length }}</p>
         <p><strong>Total price:</strong> {{ total_price }} ₴</p>
         
-        <!-- Кнопка оплати -->
+
         <div class="mt-4">
             <a href="{% url 'create_payment' %}" class="btn btn-success">Pay Now</a>
         </div>
@@ -36,7 +36,7 @@
     {% endif %}
 
     <hr>
-    <!-- Відображення адреси за замовчуванням -->
+
     {% if default_address %}
         <p><strong>Default Shipping Address:</strong> {{ default_address.street }}</p>
         <a href="{% url 'shipping:set_default_address' %}" class="btn btn-warning">Change Default Address</a>
